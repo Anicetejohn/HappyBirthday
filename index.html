@@ -1,0 +1,132 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Happy birthday</title>
+  <meta name="theme-color" content="#24103A">
+  <meta name="description" content="A little birthday surprise, made with love.">
+  <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,400..700;1,6..96,400..700&family=Caveat:wght@400..700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+  <script>document.documentElement.classList.add("js");</script>
+</head>
+<body class="is-locked">
+
+  <!-- Opening: a sealed envelope -->
+  <div class="gate" id="gate">
+    <p class="gate-to">For <span data-her-full-name></span></p>
+
+    <div class="envelope">
+      <div class="env-back"></div>
+      <div class="env-card"><span class="env-card-text">Happy birthday</span></div>
+      <svg class="env-front" viewBox="0 0 300 200" preserveAspectRatio="none" aria-hidden="true">
+        <path d="M0 0 L150 106 L0 200 Z" fill="#6A34A0"/>
+        <path d="M300 0 L150 106 L300 200 Z" fill="#6A34A0"/>
+        <path d="M0 200 L150 98 L300 200 Z" fill="#7741AE"/>
+        <path d="M0 200 L150 98 L300 200" fill="none" stroke="rgba(20,0,40,.18)" stroke-width="1"/>
+      </svg>
+      <svg class="env-flap" viewBox="0 0 300 200" preserveAspectRatio="none" aria-hidden="true">
+        <path d="M0 0 L300 0 L158 108 Q150 114 142 108 Z" fill="#5B2A8C"/>
+      </svg>
+      <button class="seal" id="seal" type="button" aria-label="Break the seal to open your surprise">
+        <span class="seal-half seal-left"><span class="seal-initial" data-her-initial></span></span>
+        <span class="seal-half seal-right"><span class="seal-initial" data-her-initial></span></span>
+      </button>
+    </div>
+
+    <p class="gate-hint">Tap the seal to open</p>
+  </div>
+
+  <main id="main">
+
+    <section class="hero" id="top">
+      <img class="sprig sprig-left" src="assets/sprig.svg" alt="">
+      <img class="sprig sprig-right" src="assets/sprig.svg" alt="">
+
+      <p class="hero-kicker">happy birthday to my favorite person,</p>
+      <h1 class="hero-name" id="heroName"></h1>
+      <p class="hero-line" id="heroLine"></p>
+      <p class="hero-together" id="together" hidden></p>
+
+      <a class="scroll-cue" href="#us" aria-label="Scroll to our photos">
+        <svg viewBox="0 0 24 24" width="28" height="28" aria-hidden="true"><path d="M6 9l6 6 6-6" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </a>
+    </section>
+
+    <section class="section us" id="us">
+      <div class="section-head">
+        <h2>Us, so far</h2>
+        <p class="section-note">Tap a photo to see it bigger.</p>
+      </div>
+      <div class="scrapbook" id="scrapbook"></div>
+    </section>
+
+    <section class="section letter-section" id="letter">
+      <div class="section-head">
+        <h2>A letter for you</h2>
+      </div>
+      <article class="paper">
+        <p class="letter-greeting" id="letterGreeting"></p>
+        <div class="letter-body" id="letterBody"></div>
+        <div class="letter-sign">
+          <p id="letterClosing"></p>
+          <p class="letter-signature" data-your-name></p>
+        </div>
+        <span class="mini-seal" aria-hidden="true"><span data-your-initial></span></span>
+      </article>
+    </section>
+
+    <section class="section wish" id="wish">
+      <div class="section-head">
+        <h2>Make a wish</h2>
+        <p class="wish-hint" id="wishHint">Close your eyes, make a wish, then tap each candle to blow it out.</p>
+      </div>
+
+      <div class="cake">
+        <div class="candles" id="candles"></div>
+        <div class="tier tier-top"></div>
+        <div class="tier tier-bottom"></div>
+        <div class="plate"></div>
+      </div>
+
+      <p class="wish-done" id="wishDone" role="status" aria-live="polite"></p>
+      <button class="relight" id="relight" type="button" hidden>Light the candles again</button>
+    </section>
+
+    <footer class="footer">
+      <p>Made for you by <span data-your-name></span>, with all my love.</p>
+    </footer>
+  </main>
+
+  <!-- Photo viewer -->
+  <dialog class="lightbox" id="lightbox" aria-label="Photo viewer">
+    <div class="lb-inner" id="lbInner">
+      <img class="lb-img" id="lbImg" alt="">
+      <p class="lb-cap" id="lbCap"></p>
+      <p class="lb-count" id="lbCount"></p>
+    </div>
+    <button class="lb-btn lb-close" id="lbClose" type="button" aria-label="Close photo">
+      <svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
+    </button>
+    <button class="lb-btn lb-prev" id="lbPrev" type="button" aria-label="Previous photo">
+      <svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true"><path d="M15 5l-7 7 7 7" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    </button>
+    <button class="lb-btn lb-next" id="lbNext" type="button" aria-label="Next photo">
+      <svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true"><path d="M9 5l7 7-7 7" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    </button>
+  </dialog>
+
+  <button class="music" id="music" type="button" aria-label="Play music" aria-pressed="false" hidden>
+    <svg class="icon-play" viewBox="0 0 24 24" width="22" height="22" aria-hidden="true"><path d="M9 18V6l10-2v12" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/><circle cx="6.5" cy="18" r="2.5" fill="currentColor"/><circle cx="16.5" cy="16" r="2.5" fill="currentColor"/></svg>
+    <svg class="icon-pause" viewBox="0 0 24 24" width="22" height="22" aria-hidden="true"><path d="M8 5v14M16 5v14" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/></svg>
+  </button>
+
+  <canvas class="confetti" id="confetti" aria-hidden="true"></canvas>
+
+  <script src="config.js"></script>
+  <script src="script.js"></script>
+</body>
+</html>
